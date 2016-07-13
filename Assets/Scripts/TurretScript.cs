@@ -42,19 +42,31 @@ public class TurretScript : MonoBehaviour {
 		locateobject(target_object);
 		Debug.Log (alpha);
 		Debug.Log (beta);
-		rigidbodyComponent.transform.rotation= Quaternion.Euler(new Vector3(beta,alpha));
+		rigidbodyComponent.transform.rotation= Quaternion.Euler(new Vector3(-alpha,-beta));
+		//
+
 	}
 
 	void locateobject(GameObject target)
 	{
 		Vector3 pos = target.transform.position;
-		float adj =target.transform.position.z - GetComponent<Rigidbody>().transform.position.z;
-		float opp =target.transform.position.x - GetComponent<Rigidbody>().transform.position.x;
-		float hyp =Mathf.Sqrt(Mathf.Pow(adj,2)+Mathf.Pow(opp,2));
+		float z =target.transform.position.z - transform.position.z;
+		float y =target.transform.position.y - transform.position.y;
+		float x =target.transform.position.x - transform.position.x;
+		alpha =- Mathf.Atan (y / z)*Mathf.Rad2Deg;
+		beta =- Mathf.Atan (z / x)*Mathf.Rad2Deg +90f;
 
-		alpha = Mathf.Acos ((adj) / (hyp)) * 57.29f;
-		beta = Mathf.Acos ((hyp) / (Mathf.Sqrt (Mathf.Pow (hyp, 2) +
-			Mathf.Pow ((target.transform.position.y - GetComponent<Rigidbody> ().transform.position.y), 2))))
-			*57.29f;
+
+		//float hyp =Mathf.Sqrt(Mathf.Pow(adj,2)+Mathf.Pow(opp,2));
+
+		/*alpha =Mathf.Sign((adj) / (hyp))* Mathf.Acos ((adj) / (hyp)) * 57.29f;
+		beta =Mathf.Sign((hyp) / (Mathf.Sqrt (Mathf.Pow (hyp, 2) +
+			Mathf.Pow ((target.transform.position.y - transform.position.y), 2))))
+			* Mathf.Acos ((hyp) / (Mathf.Sqrt (Mathf.Pow (hyp, 2) +
+			Mathf.Pow ((target.transform.position.y - transform.position.y), 2))))
+			*Mathf.Rad2Deg;
+		*/
+
+
 	}
 }
