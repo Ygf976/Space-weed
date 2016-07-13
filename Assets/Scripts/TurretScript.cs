@@ -42,7 +42,7 @@ public class TurretScript : MonoBehaviour {
 		locateobject(target_object);
 		Debug.Log (alpha);
 		Debug.Log (beta);
-		rigidbodyComponent.transform.rotation= Quaternion.Euler(new Vector3(-alpha,-beta));
+		rigidbodyComponent.transform.rotation= Quaternion.Euler(new Vector3(alpha,beta));
 		//
 
 	}
@@ -53,8 +53,8 @@ public class TurretScript : MonoBehaviour {
 		float z =target.transform.position.z - transform.position.z;
 		float y =target.transform.position.y - transform.position.y;
 		float x =target.transform.position.x - transform.position.x;
-		alpha =- Mathf.Atan (y / z)*Mathf.Rad2Deg;
-		beta =- Mathf.Atan (z / x)*Mathf.Rad2Deg +90f;
+		alpha = Mathf.Atan (y / z)*Mathf.Rad2Deg;
+		beta = Mathf.Atan (z / x)*Mathf.Rad2Deg;
 
 
 		//float hyp =Mathf.Sqrt(Mathf.Pow(adj,2)+Mathf.Pow(opp,2));
