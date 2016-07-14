@@ -25,6 +25,7 @@ public class TurretScript : MonoBehaviour {
 		// 3 - Retrieve axis information
 		float inputX = Input.GetAxis("Vertical");
 		float inputY = Input.GetAxis("Horizontal");
+        
 
 		// 4 - Movement per direction
 		movement = new Vector3(
@@ -39,11 +40,11 @@ public class TurretScript : MonoBehaviour {
 		// 6 - Rotate the game object
 		//rigidbodyComponent.angularVelocity = movement;
 		// 7 - Lock another the game object
-		locateobject(target_object);
+		//locateobject(target_object);
 		Debug.Log (alpha);
 		Debug.Log (beta);
-		rigidbodyComponent.transform.rotation= Quaternion.Euler(new Vector3(-alpha,-beta));
-		//
+		rigidbodyComponent.transform.rotation= Quaternion.LookRotation(target_object.transform.position-transform.position);
+		
 
 	}
 
@@ -54,7 +55,7 @@ public class TurretScript : MonoBehaviour {
 		float y =target.transform.position.y - transform.position.y;
 		float x =target.transform.position.x - transform.position.x;
 		alpha =- Mathf.Atan (y / z)*Mathf.Rad2Deg;
-		beta =- Mathf.Atan (z / x)*Mathf.Rad2Deg +90f;
+		beta = Mathf.Atan (z / x)*Mathf.Rad2Deg;
 
 
 		//float hyp =Mathf.Sqrt(Mathf.Pow(adj,2)+Mathf.Pow(opp,2));
