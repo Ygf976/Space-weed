@@ -20,8 +20,10 @@ public class TurretScript : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
         targetDirection = target_object.transform.position - RB.transform.position;
         
 		RB.transform.rotation= Quaternion.LookRotation(targetDirection);	//rotate in direction of the target
+
 	}
 }
